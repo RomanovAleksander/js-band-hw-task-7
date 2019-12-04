@@ -1,0 +1,64 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react",
+    "plugin:jsx-a11y/recommended",
+    "eslint-config-prettier",
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint",
+  "plugins": ["jsx-a11y", "prettier"],
+  "rules": {
+    "class-methods-use-this": [
+      "warn"
+    ],
+    "react/jsx-props-no-spreading": [
+      "warn"
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      "warn"
+    ],
+    "jsx-a11y/click-events-have-key-events": [
+      "warn"
+    ],
+    "react/destructuring-assignment": [
+      "warn"
+    ],
+    "react/jsx-fragments": [
+      "warn"
+    ],
+    "jsx-a11y/no-static-element-interactions": [
+      "warn"
+    ],
+    "no-plusplus": [
+      "warn"
+    ],
+    "react/no-unused-state": [
+      "warn"
+    ],
+    "react/prop-types": [
+      "warn"
+    ],
+    "jsx-a11y/no-onchange": [
+      "warn"
+    ],
+    "no-unneeded-ternary": [
+      "warn"
+    ],
+    "react/jsx-filename-extension": [
+      1, {"extensions": [".js", ".jsx"]}
+    ]
+  }
+}

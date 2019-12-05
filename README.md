@@ -1,4 +1,4 @@
-## Redux [React Todo-list application](https://romanovaleksander.github.io/js-band-hw-task-6) | HW7
+## Redux [React Todo-list application](https://github.com/RomanovAleksander/js-band-hw-task-6) | HW7
 * This application includes next functionality:
   * Todo-item with a **title, description, priority** fields and a default status - **open**;
   * Edit all todo-item fields;

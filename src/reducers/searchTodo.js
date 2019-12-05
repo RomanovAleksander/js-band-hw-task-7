@@ -5,13 +5,11 @@ const searchText = (state = '', action) => {
 
     switch (type) {
         case SEARCH_TODO:
-            return payload.searchText
+            return payload.searchText;
 
         default:
             return state
     }
-}
+};
 
 export default searchText;
-
-// payload.todos.filter(todo => todo.text.tolowercase().includes(payload.searchText.tolowercase()));

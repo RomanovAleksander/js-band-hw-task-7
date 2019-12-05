@@ -22,7 +22,8 @@ export default function TodoListItem(props) {
 
   const onToggleOpen = () => {
     setShowDropDown(!showDropDown);
-  }
+  };
+
   return (
     <div className={classNames}>
       <div className={`todo__check ${isDone}`} onClick={onToggleDone}>

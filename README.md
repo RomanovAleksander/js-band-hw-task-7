@@ -1,4 +1,4 @@
-## React [Todo-list application](https://github.com/RomanovAleksander/js-band-test-task) | HW6
+## Redux [React Todo-list application](https://romanovaleksander.github.io/js-band-hw-task-6) | HW7
 * This application includes next functionality:
   * Todo-item with a **title, description, priority** fields and a default status - **open**;
   * Edit all todo-item fields;
@@ -11,5 +11,7 @@
   * Application starts from /todos route;
   * Todo list is available under /todos route;
   * Other routes are unavailable and respond with not found UI.
+* Redux:
+  * Added to React application state management;
 * Application based on Wireframes provided in the Arch notes section.
-* [App on GitHub Pages](https://romanovaleksander.github.io/js-band-hw-task-6)
+* [App on GitHub Pages](https://romanovaleksander.github.io/js-band-hw-task-7)

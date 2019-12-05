@@ -5,7 +5,6 @@ function TodoList({
   todos,
   onDeleted,
   onToggleDone,
-  onToggleOpen,
   onToggleEdit
 }) {
   const items = todos.map(item => {
@@ -16,7 +15,6 @@ function TodoList({
           {...item}
           onDeleted={() => onDeleted(id)}
           onToggleDone={() => onToggleDone(id)}
-          onToggleOpen={() => onToggleOpen(id)}
           onToggleEdit={() => onToggleEdit(id)}
         />
       </div>

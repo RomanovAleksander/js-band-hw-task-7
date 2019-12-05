@@ -51,28 +51,8 @@ class App extends React.Component {
     this.setState({ isFormOpen: false, item: null });
   };
 
-  toggleProperty = (arr, id, propName, closeMenu) => {
-    const isClose = closeMenu ? false : true;
-    const idx = arr.findIndex(el => el.id === id);
-    const oldItem = arr[idx];
-    const newItem = {
-      ...oldItem,
-      [propName]: !oldItem[propName],
-      'showMenu': isClose
-    };
-    return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
-  };
-
   onToggleDone = id => {
     this.props.dispatch(toggleTodo(id));
-  };
-
-  onToggleOpen = id => {
-    this.setState(({ todoData }) => {
-      return {
-        todoData: this.toggleProperty(todoData, id, "showMenu", false)
-      };
-    });
   };
 
   findItem = id => {
@@ -123,7 +103,6 @@ class App extends React.Component {
             todos={visibleTodos}
             onDeleted={this.deleteItem}
             onToggleDone={this.onToggleDone}
-            onToggleOpen={this.onToggleOpen}
             onToggleEdit={this.onEdit}
           />
           {isFormOpen && (

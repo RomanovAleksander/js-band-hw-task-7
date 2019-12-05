@@ -2,6 +2,7 @@ import React from "react";
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import App from "../App";
 
+import '../../styles/styles.scss';
 import "./router.css";
 
 const Router = () => (

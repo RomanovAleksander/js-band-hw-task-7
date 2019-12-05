@@ -6,33 +6,43 @@ import ItemFilter from "../ItemFilter";
 import TodoList from "../TodoList";
 import Footer from "../Footer";
 import ItemForm from "../ItemForm";
-import { addTodo, removeTodo, updateTodo, VisibilityPriorityFilters } from '../../actions/index';
+import { addTodo, removeTodo, updateTodo, VisibilityPriorityFilters, toggleTodo, filterByPriority, filterByDone, searchTodo } from '../../actions/index';
 
 import "../../styles/styles.scss";
 
- class App extends React.Component {
+class App extends React.Component {
   constructor() {
     super();
     this.setId = 1;
     this.state = {
-      priority: "all",
-      completed: "all",
-      searchText: "",
       isFormOpen: false,
       item: null
     };
   }
 
   onSearchChange = searchText => {
-    this.setState({ searchText });
+    this.props.dispatch(searchTodo(searchText));
   };
 
   onPriorityChange = priority => {
-    this.setState({ priority });
+    this.props.dispatch(filterByPriority(priority))
+    const { todos } = this.props;
+    switch (priority) {
+      case VisibilityPriorityFilters.SHOW_ALL:
+        return todos;
+      case VisibilityPriorityFilters.SHOW_HIGH:
+        return todos.filter(item => item.priority === priority);
+      case VisibilityPriorityFilters.SHOW_NORMAL:
+        return todos.filter(item => item.priority === priority);
+      case VisibilityPriorityFilters.SHOW_LOW:
+        return todos.filter(item => item.priority === priority);
+      default:
+        return todos;
+    }
   };
 
   onStatusChange = completed => {
-    this.setState({ completed });
+    this.props.dispatch(filterByDone(completed));
   };
 
   openForm = () => {
@@ -56,11 +66,7 @@ import "../../styles/styles.scss";
   };
 
   onToggleDone = id => {
-    // this.setState(({ todoData }) => {
-    //   return {
-    //     todoData: this.toggleProperty(todoData, id, "done", true)
-    //   };
-    // });
+    this.props.dispatch(toggleTodo(id))
   };
 
   onToggleOpen = id => {
@@ -110,9 +116,9 @@ import "../../styles/styles.scss";
     switch (priority) {
       case VisibilityPriorityFilters.SHOW_ALL:
         return items;
-      case  VisibilityPriorityFilters.SHOW_HIGH:
+      case VisibilityPriorityFilters.SHOW_HIGH:
         return items.filter(item => item.priority === priority);
-      case  VisibilityPriorityFilters.SHOW_NORMAL:
+      case VisibilityPriorityFilters.SHOW_NORMAL:
         return items.filter(item => item.priority === priority);
       case VisibilityPriorityFilters.SHOW_LOW:
         return items.filter(item => item.priority === priority);
@@ -145,19 +151,16 @@ import "../../styles/styles.scss";
 
   render() {
     const {
-      searchText,
-      priority,
-      completed,
       isFormOpen,
       item
     } = this.state;
 
-    const { todos } = this.props;
+    const { todos, filterPriority, filterDone, searchText } = this.props;
 
-        const visibleBySearchAndPriority = this.filterByPriority(
-      this.search(todos, searchText),
-      priority
-    );
+    // const visibleBySearchAndPriority = this.filterPriority(
+    //   this.search(todos, searchText),
+    //   priority
+    // );
     // const visibleItems = this.filterByCompleted(
     //   visibleBySearchAndPriority,
     //   completed
@@ -171,10 +174,10 @@ import "../../styles/styles.scss";
         <main className="content">
 
           <div className="filter">
-            <Search onSearchChange={this.onSearchChange} />
+            <Search onSearchChange={this.onSearchChange} searchText={searchText} />
             <ItemFilter
-              priority={priority}
-              completed={completed}
+              priority={filterPriority}
+              completed={filterDone}
               onPriorityChange={this.onPriorityChange}
               onStatusChange={this.onStatusChange}
               openForm={this.openForm}
@@ -204,7 +207,10 @@ import "../../styles/styles.scss";
 }
 
 const mapStateToProps = state => ({
-  todos: state.todos
+  todos: state.todos,
+  filterPriority: state.filterByPriority,
+  filterDone: state.filterDone,
+  searchText: state.searchText
 });
 
 export default connect(mapStateToProps)(App);

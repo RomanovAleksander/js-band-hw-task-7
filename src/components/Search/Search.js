@@ -2,22 +2,14 @@ import React, { Component } from "react";
 import "./search.css";
 
 export default class Search extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchText: ""
-    };
-  }
 
-  onSearchChange = e => {
-    const { onSearchChange } = this.props;
-    const searchText = e.target.value;
-    this.setState({ searchText });
-    onSearchChange(searchText);
+  onSearchChange = ({ target }) => {
+    this.props.onSearchChange(target.value);
   };
 
   render() {
-    const { searchText } = this.state;
+    const { searchText } = this.props;
+
     return (
       <div className="filter__item">
         <input

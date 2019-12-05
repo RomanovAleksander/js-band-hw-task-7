@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 export default function TodoListItem(props) {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -9,19 +9,18 @@ export default function TodoListItem(props) {
     description,
     priority,
     done,
-    showMenu,
     onDeleted,
     onToggleDone,
-    // onToggleOpen,
     onToggleEdit
   } = props;
   let classNames = "todo";
+
   const isDone = done ? "" : " display_none";
   if (done) {
     classNames += " done";
   }
-  
-  const  onToggleOpen = ({ target }) => {
+
+  const onToggleOpen = () => {
     setShowDropDown(!showDropDown);
   }
   return (
@@ -38,7 +37,7 @@ export default function TodoListItem(props) {
         <div className="todo__button btn" onClick={onToggleOpen} id={id}>
           ...
         </div>
-        <div className={`todo__menu ${showDropDown? '': " display_none"}`}>
+        <div className={`todo__menu ${showDropDown ? '' : " display_none"}`}>
           <div className="todo__menu-item task-done" onClick={onToggleDone}>
             done
           </div>

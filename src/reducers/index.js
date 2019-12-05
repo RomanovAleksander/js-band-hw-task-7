@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
 import { todos } from './todos';
-import filterByPriority from './visibilityFilter'
+import filterByPriority from './visibilityFilter';
+import filterDone from './visibilityDone';
+import searchText from './searchTodo';
 
-export const reducers =  combineReducers({
+export const reducers = combineReducers({
   todos,
-  filterByPriority
-})
+  filterPriority: filterByPriority,
+  filterDone,
+  searchText,
+});

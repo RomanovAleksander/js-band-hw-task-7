@@ -23,6 +23,7 @@ import "../../styles/styles.scss";
       item: null
     };
   }
+
   onSearchChange = searchText => {
     this.setState({ searchText });
   };

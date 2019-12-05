@@ -10,7 +10,6 @@ import {
   addTodo,
   removeTodo,
   updateTodo,
-  VisibilityPriorityFilters,
   toggleTodo,
   filterByPriority,
   filterByDone,

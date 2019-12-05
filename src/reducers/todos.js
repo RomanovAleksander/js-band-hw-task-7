@@ -1,36 +1,44 @@
-import {ADD_TODO, DELETE_TODO, TOGGLE_TODO} from "../actions/todos";
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "../actions/todos";
 
-const initialState = [];
+const initialState = [
+  {
+    id: 0,
+    text: 'HW6',
+    description: 'Use bootstrap',
+    priority: 'high',
+    done: false,
+    showMenu: false
+  }
+];
 
 export const todos = (state = initialState, action) => {
-  const { type } = action;
+  const { type, payload } = action;
   switch (type) {
     case ADD_TODO:
       return [
         ...state,
         {
-          id: action.id,
-          text: action.text,
-          description: action.description,
-          priority: action.priority,
+          id: payload.id,
+          text: payload.text,
+          description: payload.description,
+          priority: payload.priority,
           done: false,
           showMenu: false
         }
       ];
-    case TOGGLE_TODO:
-      return state.map((todo) => (
-        (todo.id === action.id)
-          ? {...todo, done: !todo.done}
-          : todo
-      ));
-    case DELETE_TODO:
-      const idx = state.findIndex(el => el.id === action.id);
-      const before = state.slice(0, idx);
-      const after = state.slice(idx + 1);
-      const newArray = [...before, ...after];
-      return {
-        state: newArray
-      };
+
+    case REMOVE_TODO:
+      return state.filter(todo => todo.id !== payload.id)
+
+    case UPDATE_TODO:
+      return state.map(todo => {
+        return todo.id === payload.id ? {
+          id: payload.id,
+          title: payload.title,
+          description: payload.description,
+          priority: payload.priority
+        } : todo
+      })
     default:
       return state
   }

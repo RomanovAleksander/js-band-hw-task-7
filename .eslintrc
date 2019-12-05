@@ -6,10 +6,7 @@
   "extends": [
     "airbnb",
     "prettier",
-    "prettier/react",
-    "plugin:jsx-a11y/recommended",
-    "eslint-config-prettier",
-    "eslint:recommended"
+    "prettier/react"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -21,42 +18,20 @@
   "parser": "babel-eslint",
   "plugins": ["jsx-a11y", "prettier"],
   "rules": {
-    "class-methods-use-this": [
-      "warn"
-    ],
-    "react/jsx-props-no-spreading": [
-      "warn"
-    ],
-    "jsx-a11y/label-has-associated-control": [
-      "warn"
-    ],
-    "jsx-a11y/click-events-have-key-events": [
-      "warn"
-    ],
-    "react/destructuring-assignment": [
-      "warn"
-    ],
-    "react/jsx-fragments": [
-      "warn"
-    ],
-    "jsx-a11y/no-static-element-interactions": [
-      "warn"
-    ],
-    "no-plusplus": [
-      "warn"
-    ],
-    "react/no-unused-state": [
-      "warn"
-    ],
-    "react/prop-types": [
-      "warn"
-    ],
-    "jsx-a11y/no-onchange": [
-      "warn"
-    ],
-    "no-unneeded-ternary": [
-      "warn"
-    ],
+    "class-methods-use-this": 0,
+    "react/jsx-props-no-spreading": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-fragments": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-plusplus": 0,
+    "react/no-unused-state": 0,
+    "react/prop-types": 0,
+    "jsx-a11y/no-onchange": 0,
+    "no-unneeded-ternary": 0,
+    "import/prefer-default-export": 0,
+    "import/named": 0,
     "react/jsx-filename-extension": [
       1, {"extensions": [".js", ".jsx"]}
     ]

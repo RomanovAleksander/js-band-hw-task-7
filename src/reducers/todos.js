@@ -1,6 +1,6 @@
 import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_TODO } from "../actions/todos";
 
-const initialState = [
+export const initialState = [
   {
     id: 0,
     text: 'HW6',
@@ -28,7 +28,7 @@ export const todos = (state = initialState, action) => {
       ];
 
     case REMOVE_TODO:
-      return state.filter(todo => todo.id !== payload.id)
+      return state.filter(todo => todo.id !== payload.id);
 
     case UPDATE_TODO:
       return state.map(todo => {

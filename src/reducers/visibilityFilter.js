@@ -5,10 +5,10 @@ const filterByPriority = (state = VisibilityPriorityFilters.SHOW_ALL, action) =>
 
     switch (type) {
         case 'FILTER_BY_PRIORITY':
-            return payload.priorityFilter
+            return payload.priorityFilter;
         default:
             return state
     }
-}
+};
 
 export default filterByPriority;

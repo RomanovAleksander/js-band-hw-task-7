@@ -1,7 +1,0 @@
-.todo-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 96%;
-}

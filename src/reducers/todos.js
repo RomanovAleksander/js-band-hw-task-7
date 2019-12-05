@@ -34,7 +34,7 @@ export const todos = (state = initialState, action) => {
       return state.map(todo => {
         return todo.id === payload.id ? {
           id: payload.id,
-          title: payload.title,
+          text: payload.text,
           description: payload.description,
           priority: payload.priority
         } : todo

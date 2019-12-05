@@ -15,7 +15,6 @@ import "../../styles/styles.scss";
     super();
     this.setId = 1;
     this.state = {
-      todoData: [this.createItem("HW6", "Use bootstrap", "high")],
       priority: "all",
       completed: "all",
       searchText: "",
@@ -23,7 +22,6 @@ import "../../styles/styles.scss";
       item: null
     };
   }
-
   onSearchChange = searchText => {
     this.setState({ searchText });
   };
@@ -57,11 +55,11 @@ import "../../styles/styles.scss";
   };
 
   onToggleDone = id => {
-    this.setState(({ todoData }) => {
-      return {
-        todoData: this.toggleProperty(todoData, id, "done", true)
-      };
-    });
+    // this.setState(({ todoData }) => {
+    //   return {
+    //     todoData: this.toggleProperty(todoData, id, "done", true)
+    //   };
+    // });
   };
 
   onToggleOpen = id => {
@@ -73,79 +71,25 @@ import "../../styles/styles.scss";
   };
 
   findItem = id => {
-    const { todoData } = this.state;
-    return todoData.find(el => el.id === id);
+    return this.props.todos.find(el => el.id === id);
   };
 
   onEdit = id => {
     const item = this.findItem(id);
-    item.showMenu = false;
     this.openForm();
     this.setState({ item });
   };
 
-  createItem = (title, description, priority) => {
-    return {
-      title,
-      description,
-      priority,
-      done: false,
-      id: this.setId++,
-      showMenu: false
-    };
-  };
-
   deleteItem = id => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex(el => el.id === id);
-      const before = todoData.slice(0, idx);
-      const after = todoData.slice(idx + 1);
-      const newArray = [...before, ...after];
-
-      return {
-        todoData: newArray
-      };
-    });
-
-    this.props.dispatch(removeTodo(1))
+    this.props.dispatch(removeTodo(id))
   };
 
-  addItem = ({ title, description, priority }) => {
-    const newItem = this.createItem(title, description, priority);
-    this.setState(({ todoData }) => {
-      const newArray = [...todoData, newItem];
-
-      return {
-        todoData: newArray
-      };
-
-    });
-    this.props.dispatch(addTodo(title, description, priority))
-
+  addItem = ({ text, description, priority }) => {
+    this.props.dispatch(addTodo(text, description, priority))
   };
 
-  updateItem = ({ title, description, priority, id }) => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex(el => el.id === id);
-      const oldItem = todoData[idx];
-      const newItem = {
-        ...oldItem,
-        'title': title,
-        'description': description,
-        'priority': priority
-      };
-      const newArray = [
-        ...todoData.slice(0, idx),
-        newItem,
-        ...todoData.slice(idx + 1)
-      ];
-
-      return {
-        todoData: newArray
-      };
-    });
-
-    this.props.dispatch(updateTodo(title, description, priority, 1))
+  updateItem = ({ text, description, priority, id }) => {
+    this.props.dispatch(updateTodo(text, description, priority, id))
   };
 
   filterByPriority(items, priority) {
@@ -190,31 +134,35 @@ import "../../styles/styles.scss";
   }
 
   search(items, searchText) {
-    if (searchText === 0) {
-      return items;
-    }
-    return items.filter(item => {
-      return item.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
-    });
+    // if (searchText === 0) {
+    //   return items;
+    // }
+    // return items.filter(item => {
+    //   return item.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+    // });
   }
 
   render() {
     const {
-      todoData,
       searchText,
       priority,
       completed,
       isFormOpen,
       item
     } = this.state;
-    const visibleBySearchAndPriority = this.filterByPriority(
-      this.search(todoData, searchText),
+
+    const { todos } = this.props;
+
+        const visibleBySearchAndPriority = this.filterByPriority(
+      this.search(todos, searchText),
       priority
     );
-    const visibleItems = this.filterByCompleted(
-      visibleBySearchAndPriority,
-      completed
-    );
+    // const visibleItems = this.filterByCompleted(
+    //   visibleBySearchAndPriority,
+    //   completed
+    // );
+
+    const visibleItems = todos;
 
     return (
       <div className="wrapper">
@@ -255,7 +203,7 @@ import "../../styles/styles.scss";
 }
 
 const mapStateToProps = state => ({
-  state: state.todos
+  todos: state.todos
 });
 
 export default connect(mapStateToProps)(App);

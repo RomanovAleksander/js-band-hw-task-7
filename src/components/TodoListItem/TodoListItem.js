@@ -9,7 +9,6 @@ export default function TodoListItem(props) {
     description,
     priority,
     done,
-    showMenu,
     onDeleted,
     onToggleDone,
     onToggleEdit

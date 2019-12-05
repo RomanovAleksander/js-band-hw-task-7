@@ -9,7 +9,8 @@
     "react-router-dom": "^5.1.2",
     "react-redux": "^7.0.2",
     "redux": "^4.0.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "redux-devtools-extension": "^2.13.8"
   },
   "homepage": "https://romanovaleksander.github.io/js-band-hw-task-7",
   "scripts": {
@@ -41,7 +42,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run eslint && npm test"
+      "pre-commit": "npm run lint && npm test"
     }
   },
   "browserslist": {

@@ -1,14 +1,40 @@
 import React, { Component } from "react";
 
 export default class ItemFilter extends Component {
+  constructor() {
+    super();
+    this.state = {
+      priority: "all",
+      completed: "all"
+    };
+  }
+
+  handlePriorityChange = ({ target }) => {
+    const { onPriorityChange } = this.props;
+    const priority = target.value;
+    this.setState({ priority });
+    onPriorityChange(priority);
+  };
+
+  handleStatusChange = ({ target }) => {
+    const { onStatusChange } = this.props;
+    const completed = target.value;
+    this.setState({ completed });
+    onStatusChange(completed);
+  };
+
   render() {
+    const { priority, completed } = this.state;
+    const { openForm } = this.props;
+
     return (
       <React.Fragment>
         <div className="filter__item">
           <select
             className="select-status select"
             key="status"
-            value=''
+            onChange={this.handleStatusChange}
+            value={completed}
           >
             <option value="all">all</option>
             <option value="open">open</option>
@@ -19,7 +45,8 @@ export default class ItemFilter extends Component {
           <select
             className="select-priority select"
             key="priority"
-            value=''
+            onChange={this.handlePriorityChange}
+            value={priority}
           >
             <option value="all">all</option>
             <option value="high">high</option>
@@ -31,6 +58,7 @@ export default class ItemFilter extends Component {
           <button
             className="filter__create-btn btn"
             type="button"
+            onClick={openForm}
           >
             Create
           </button>

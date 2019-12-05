@@ -1,7 +1,10 @@
 export const ADD_TODO = 'ADD_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const UPDATE_TODO = 'UPDATE_TODO';
-export const FILTER_BY_PRIORITY= 'FILTER_BY_PRIORITY';
+export const FILTER_BY_PRIORITY = 'FILTER_BY_PRIORITY';
+export const FILTER_BY_DONE = 'FILTER_BY_DONE';
+export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const SEARCH_TODO = 'SEARCH_TODO';
 
 let nextTodoId = 1;
 
@@ -46,3 +49,31 @@ export const VisibilityPriorityFilters = {
   SHOW_NORMAL: 'normal',
   SHOW_LOW: 'low'
 };
+
+export const filterByDone = doneFilter => ({
+  type: FILTER_BY_DONE,
+  payload: {
+    doneFilter
+  }
+});
+
+export const VisibilityDoneFilters = {
+  SHOW_ALL: 'all',
+  SHOW_DONE: 'done',
+  SHOW_OPEN: 'open',
+};
+
+export const toggleTodo = id => ({
+  type: TOGGLE_TODO,
+  payload: {
+    id
+  }
+})
+
+export const searchTodo = (searchText, todos) => ({
+  type: SEARCH_TODO,
+  payload: {
+    searchText,
+    todos
+  }
+})

@@ -1,31 +1,16 @@
 import React, { Component } from "react";
 
 export default class ItemFilter extends Component {
-  constructor() {
-    super();
-    this.state = {
-      priority: "all",
-      completed: "all"
-    };
-  }
-
   handlePriorityChange = ({ target }) => {
-    const { onPriorityChange } = this.props;
-    const priority = target.value;
-    this.setState({ priority });
-    onPriorityChange(priority);
+    this.props.onPriorityChange(target.value);
   };
 
   handleStatusChange = ({ target }) => {
-    const { onStatusChange } = this.props;
-    const completed = target.value;
-    this.setState({ completed });
-    onStatusChange(completed);
+    this.props.onStatusChange(target.value);
   };
 
   render() {
-    const { priority, completed } = this.state;
-    const { openForm } = this.props;
+    const { priority, completed, openForm } = this.props;
 
     return (
       <React.Fragment>

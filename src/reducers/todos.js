@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "../actions/todos";
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_TODO } from "../actions/todos";
 
 const initialState = [
   {
@@ -38,7 +38,15 @@ export const todos = (state = initialState, action) => {
           description: payload.description,
           priority: payload.priority
         } : todo
-      })
+      });
+
+    case TOGGLE_TODO:
+      return state.map(todo =>
+        todo.id === payload.id ?
+          { ...todo, done: !todo.done } :
+          todo
+      );
+
     default:
       return state
   }

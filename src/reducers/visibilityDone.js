@@ -9,6 +9,6 @@ const filterDone = (state = VisibilityDoneFilters.SHOW_ALL, action) => {
         default:
             return state
     }
-};
+}
 
 export default filterDone;

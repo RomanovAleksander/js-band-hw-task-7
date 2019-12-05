@@ -23,11 +23,11 @@ export const removeTodo = id => ({
   }
 });
 
-export const updateTodo = (title, description, priority, id) => ({
+export const updateTodo = (text, description, priority, id) => ({
   type: UPDATE_TODO,
   payload: {
     id,
-    title,
+    text,
     description,
     priority
   }

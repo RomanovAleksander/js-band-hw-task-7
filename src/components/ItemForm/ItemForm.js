@@ -4,7 +4,7 @@ export default class ItemForm extends React.Component {
   constructor(props) {
     super(props);
     this.default = {
-      title: "",
+      text: "",
       description: "",
       priority: "normal"
     };
@@ -13,7 +13,7 @@ export default class ItemForm extends React.Component {
 
   onTitleChange = e => {
     this.setState({
-      title: e.target.value
+      text: e.target.value
     });
   };
 
@@ -41,7 +41,7 @@ export default class ItemForm extends React.Component {
   };
 
   render() {
-    const { title, description, priority } = this.state;
+    const { text, description, priority } = this.state;
     const { isFormOpen, closeForm } = this.props;
     const isOpen = isFormOpen ? "" : " display_none";
 
@@ -56,7 +56,7 @@ export default class ItemForm extends React.Component {
             className="title_input"
             onChange={this.onTitleChange}
             placeholder="Title"
-            value={title}
+            value={text}
           />
           <label htmlFor="description"> Description</label>
           <input

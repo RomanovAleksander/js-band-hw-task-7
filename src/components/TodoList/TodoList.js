@@ -10,12 +10,11 @@ function TodoList({
   onToggleEdit
 }) {
   const items = todos.map(item => {
-    const { id, ...itemProps } = item;
-
+    const { id } = item;
     return (
       <div key={id}>
         <TodoListItem
-          {...itemProps}
+          {...item}
           onDeleted={() => onDeleted(id)}
           onToggleDone={() => onToggleDone(id)}
           onToggleOpen={() => onToggleOpen(id)}
